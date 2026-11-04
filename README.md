@@ -1,254 +1,272 @@
-\# Gestora AI — AI-Powered Hand Gesture Control System
 
 
+# Gestora AI — Hand Gesture Control System
 
-\*\*Control your computer without touching a mouse or keyboard!\*\*
+**Control Beyond Touch**
 
+Gestora AI is a Python-based computer vision application that allows users to control their computers using hand gestures captured through a webcam.
 
+The system uses MediaPipe for real-time hand tracking, OpenCV for video processing, and PyAutoGUI for mouse and keyboard automation.
 
-Gestora AI is a Python-based computer vision application that uses a webcam to detect hand movements and recognize gestures in real time.
+It includes a desktop dashboard built with Tkinter, allowing users to launch and manage multiple gesture-based features from one interface.
 
+## Features
 
+### 1. Virtual Mouse and Scrolling
 
-It provides a desktop dashboard for launching different touchless interaction features.
+- Move the mouse cursor using your index finger.
+- Perform left clicks using a thumb-index pinch.
+- Scroll webpages using two raised fingers.
+- Interact with your computer without a physical mouse.
 
+### 2. Air Drawing
 
+- Draw virtually using your index finger.
+- Pause drawing using two fingers.
+- Press `C` to clear the canvas.
+- Press `S` to save your drawing as a PNG image.
+- Press `Q` to exit the drawing window.
 
-\## Features
+### 3. Hand Gesture Recognition
 
+Recognizes five hand gestures:
 
+- Open Palm
+- Fist
+- Peace
+- Thumbs Up
+- Pointing
 
-\### 1. Virtual Mouse
+The system identifies gestures using hand landmark positions and rule-based finger detection.
 
-\- Move the mouse cursor using your index finger.
+### 4. Presentation Control
 
-\- Perform left clicks using a thumb-index pinch.
+Control presentation slides using hand gestures.
 
-\- Scroll webpages using two raised fingers.
+| Gesture | Action |
+|---------|--------|
+| Peace | Next slide |
+| Fist | Previous slide |
+| Open Palm | Reset / Ready for next gesture |
 
+The presentation controller includes gesture stability checks and a cooldown mechanism to reduce accidental slide changes.
 
+### 5. Desktop Dashboard
 
-\### 2. Air Drawing
+A user-friendly graphical interface developed using Tkinter.
 
-\- Draw in the air using your index finger.
+The dashboard provides:
 
-\- Pause drawing using two fingers.
+- Virtual Mouse + Scroll
+- Air Drawing
+- Presentation Control
+- Gesture Recognition
+- Stop Current Feature
+- Real-time feature status
 
-\- Clear the canvas by pressing `C`.
+Only one gesture-control feature can run at a time through the dashboard.
 
-\- Save drawings as PNG images by pressing `S`.
+## Technologies Used
 
+| Technology | Purpose |
+|------------|---------|
+| Python 3.11 | Main programming language |
+| OpenCV | Webcam capture and image processing |
+| MediaPipe | Hand landmark detection |
+| PyAutoGUI | Mouse and keyboard automation |
+| NumPy | Numerical operations |
+| Tkinter | Desktop graphical interface |
 
+## How Gestora AI Works
 
-\### 3. Gesture Recognition
+1. The webcam captures live video frames.
+2. OpenCV processes the frames.
+3. MediaPipe detects 21 landmarks on the hand.
+4. Python analyzes finger positions and movements.
+5. Rule-based gesture recognition determines the action.
+6. PyAutoGUI executes the corresponding mouse or keyboard command.
 
-Recognizes hand gestures including:
+**Technical Note:** Gestora AI uses MediaPipe's pretrained hand landmark detection model. The gesture classification logic is currently rule-based, rather than a separately trained custom machine learning model.
 
-\- Open Palm
+## Installation
 
-\- Fist
+### Prerequisites
 
-\- Peace
+- Python 3.11
+- A working webcam
+- Windows operating system
+- Git (optional, for cloning the repository)
 
-\- Thumbs Up
-
-\- Pointing
-
-
-
-\### 4. Presentation Control
-
-Control PowerPoint presentations using hand gestures:
-
-\- Peace: Next slide
-
-\- Fist: Previous slide
-
-\- Open Palm: Reset gesture
-
-
-
-\### 5. Desktop Dashboard
-
-A Tkinter-based graphical interface for launching and stopping different Gestora AI features.
-
-
-
-\## Technologies Used
-
-
-
-\- Python 3.11
-
-\- OpenCV
-
-\- MediaPipe
-
-\- PyAutoGUI
-
-\- NumPy
-
-\- Tkinter
-
-
-
-\## How It Works
-
-
-
-1\. The webcam captures live video.
-
-2\. MediaPipe detects hand landmarks.
-
-3\. Python analyzes fingertip positions and hand gestures.
-
-4\. Gesture rules determine the requested action.
-
-5\. PyAutoGUI performs mouse or keyboard operations.
-
-
-
-\*\*Note:\*\* Gesture recognition currently uses landmark-based rules rather than a separately trained machine learning classifier.
-
-
-
-\## Installation
-
-
-
-\### 1. Clone the repository
-
-
+### Step 1: Clone the Repository
 
 ```bash
-
 git clone https://github.com/FaseehaAzam/Gestora-AI.git
-
 cd Gestora-AI
-
 ```
 
+Alternatively, download the repository as a ZIP file and extract it.
 
+### Step 2: Create a Virtual Environment
 
-\### 2. Create a virtual environment
-
-
-
-On Windows:
-
-
+Open Command Prompt inside the project folder.
 
 ```cmd
-
-py -3.11 -m venv gestora\_env
-
-gestora\_env\\Scripts\\activate
-
+py -3.11 -m venv gestora_env
 ```
 
+Activate the environment:
 
+```cmd
+gestora_env\Scripts\activate
+```
 
-\### 3. Install dependencies
+### Step 3: Install Dependencies
 
-
-
-```bash
-
+```cmd
 python -m pip install -r requirements.txt
-
 ```
 
+## Run the Application
 
+Start the main dashboard:
 
-\## Run the Application
-
-
-
-```bash
-
+```cmd
 python dashboard.py
-
 ```
 
+The Gestora AI dashboard will open.
 
+Select a feature to start using hand gestures.
 
-Select a feature from the dashboard.
+To stop a running feature, click **STOP CURRENT FEATURE**.
 
+## Run Individual Features
 
+You can also run each module separately.
 
-\## Project Files
+### Hand Tracking
 
+```cmd
+python hand_tracking.py
+```
 
+### Virtual Mouse
 
-\- `dashboard.py` — Main desktop dashboard
+```cmd
+python virtual_mouse.py
+```
 
-\- `camera\_test.py` — Webcam testing
+### Virtual Mouse and Scrolling
 
-\- `hand\_tracking.py` — Hand landmark detection
+```cmd
+python airctrl_scroll.py
+```
 
-\- `virtual\_mouse.py` — Mouse movement and clicking
+### Air Drawing
 
-\- `airctrl\_scroll.py` — Mouse movement, clicking, and scrolling
+```cmd
+python air_drawing.py
+```
 
-\- `air\_drawing.py` — Virtual drawing canvas
+### Gesture Recognition
 
-\- `gesture\_recognition.py` — Gesture recognition
+```cmd
+python gesture_recognition.py
+```
 
-\- `gesture\_shortcuts.py` — Presentation control
+### Presentation Control
 
-\- `requirements.txt` — Python dependencies
+```cmd
+python gesture_shortcuts.py
+```
 
-\- `.gitignore` — Files excluded from version control
+## Project Structure
 
+```text
+Gestora-AI/
+|
+|-- dashboard.py
+|-- camera_test.py
+|-- hand_tracking.py
+|-- virtual_mouse.py
+|-- airctrl_scroll.py
+|-- air_drawing.py
+|-- gesture_recognition.py
+|-- gesture_shortcuts.py
+|-- requirements.txt
+|-- README.md
+|-- .gitignore
+```
 
+## Application Controls
 
-\## Notes
+| Feature | Gesture / Key | Action |
+|---------|---------------|--------|
+| Virtual Mouse | Index finger | Move cursor |
+| Virtual Mouse | Thumb-index pinch | Left click |
+| Scrolling | Two raised fingers | Scroll |
+| Air Drawing | Index finger | Draw |
+| Air Drawing | Index + middle fingers | Pause |
+| Air Drawing | C | Clear drawing |
+| Air Drawing | S | Save drawing |
+| Air Drawing | Q | Quit |
+| Presentation | Peace | Next slide |
+| Presentation | Fist | Previous slide |
+| Presentation | Open Palm | Reset / Ready |
 
+## System Requirements
 
+- Webcam with adequate lighting
+- Python 3.11
+- Windows 10 or 11
+- Required Python libraries installed
+- Sufficient processing power for real-time video analysis
 
-\- A working webcam is required.
+Performance may vary depending on webcam quality, lighting, and computer hardware.
 
-\- Performance depends on hardware and lighting.
+## Limitations
 
-\- Only one webcam feature should run at a time.
+- Gesture recognition accuracy depends on hand visibility and lighting.
+- Rapid hand movements may affect tracking stability.
+- Some gestures may be confused due to hand orientation.
+- Performance can decrease on lower-powered devices.
+- The current gesture recognition system uses predefined rules.
 
-\- Gesture recognition may vary with hand orientation.
+## Future Improvements
 
+- Train a custom machine learning gesture classifier.
+- Improve gesture recognition accuracy.
+- Add customizable gesture shortcuts.
+- Introduce adjustable sensitivity settings.
+- Improve real-time processing performance.
+- Add more accessibility-focused features.
+- Enhance the graphical user interface.
 
+## Learning Outcomes
 
-\## Future Improvements
+This project provided practical experience in:
 
+- Computer vision
+- Real-time hand tracking
+- Human-computer interaction
+- Gesture recognition
+- Python GUI development
+- Mouse and keyboard automation
+- Integrating multiple Python modules
+- Git and GitHub version control
 
+## Author
 
-\- Custom-trained gesture classification model
+**FaseehaAzam**
 
-\- More keyboard shortcuts
-
-\- Adjustable gesture sensitivity
-
-\- Improved graphical interface
-
-\- Performance optimization
-
-
-
-\## Author
-
-
-
-\*\*FaseehaAzam\*\*
-
-
+AI Student | Python | Computer Vision | Machine Learning
 
 GitHub: https://github.com/FaseehaAzam
 
+## Repository
 
+https://github.com/FaseehaAzam/Gestora-AI
 
-\## License
+## License
 
-
-
-No license has been selected yet.
-
-
-
+No license has been selected for this project.
