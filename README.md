@@ -1,14 +1,55 @@
 
-
 # Gestora AI — Hand Gesture Control System
 
-**Control Beyond Touch**
+### Control Beyond Touch
 
-Gestora AI is a Python-based computer vision application that allows users to control their computers using hand gestures captured through a webcam.
+Gestora AI is a Python-based computer vision application that allows users to interact with their computers using hand gestures captured through a webcam.
 
-The system uses MediaPipe for real-time hand tracking, OpenCV for video processing, and PyAutoGUI for mouse and keyboard automation.
+The system combines MediaPipe for real-time hand tracking, OpenCV for video processing, and PyAutoGUI for mouse and keyboard automation.
 
-It includes a desktop dashboard built with Tkinter, allowing users to launch and manage multiple gesture-based features from one interface.
+It features a desktop dashboard developed using Tkinter, allowing users to launch and manage different touchless interaction features from one interface.
+
+## Application Preview
+
+### Gestora AI Dashboard
+
+![Gestora AI Dashboard](screenshots/dashboard.png)
+
+### Virtual Mouse Control
+
+Control the mouse cursor using hand movements.
+
+![Virtual Mouse](screenshots/virtual_mouse.png)
+
+### Air Drawing
+
+Draw virtually in the air using your index finger.
+
+![Air Drawing](screenshots/air_drawing.png)
+
+### Presentation Control
+
+**Open Palm — Reset / Ready**
+
+![Open Palm Gesture](screenshots/presentation_open_palm.png)
+
+**Peace — Next Slide**
+
+![Peace Gesture](screenshots/presentation_peace.png)
+
+**Fist — Previous Slide**
+
+![Fist Gesture](screenshots/presentation_fist.png)
+
+## Demo Video
+
+Watch Gestora AI in action:
+
+[View Gestora AI Demo Video](demo/recording.mp4)
+
+The demonstration video shows the system's gesture-based interaction capabilities.
+
+---
 
 ## Features
 
@@ -24,12 +65,12 @@ It includes a desktop dashboard built with Tkinter, allowing users to launch and
 - Draw virtually using your index finger.
 - Pause drawing using two fingers.
 - Press `C` to clear the canvas.
-- Press `S` to save your drawing as a PNG image.
+- Press `S` to save drawings as PNG images.
 - Press `Q` to exit the drawing window.
 
 ### 3. Hand Gesture Recognition
 
-Recognizes five hand gestures:
+The system recognizes five predefined gestures:
 
 - Open Palm
 - Fist
@@ -37,7 +78,7 @@ Recognizes five hand gestures:
 - Thumbs Up
 - Pointing
 
-The system identifies gestures using hand landmark positions and rule-based finger detection.
+Gesture classification is based on hand landmark positions and predefined finger-state rules.
 
 ### 4. Presentation Control
 
@@ -53,18 +94,18 @@ The presentation controller includes gesture stability checks and a cooldown mec
 
 ### 5. Desktop Dashboard
 
-A user-friendly graphical interface developed using Tkinter.
-
-The dashboard provides:
+The Tkinter-based dashboard provides:
 
 - Virtual Mouse + Scroll
 - Air Drawing
 - Presentation Control
 - Gesture Recognition
 - Stop Current Feature
-- Real-time feature status
+- Feature status display
 
-Only one gesture-control feature can run at a time through the dashboard.
+Only one feature can be launched at a time through the dashboard.
+
+---
 
 ## Technologies Used
 
@@ -76,26 +117,30 @@ Only one gesture-control feature can run at a time through the dashboard.
 | PyAutoGUI | Mouse and keyboard automation |
 | NumPy | Numerical operations |
 | Tkinter | Desktop graphical interface |
+| Git & GitHub | Version control and project hosting |
 
 ## How Gestora AI Works
 
 1. The webcam captures live video frames.
 2. OpenCV processes the frames.
-3. MediaPipe detects 21 landmarks on the hand.
-4. Python analyzes finger positions and movements.
-5. Rule-based gesture recognition determines the action.
+3. MediaPipe detects 21 hand landmarks.
+4. Python analyzes fingertip positions and finger states.
+5. Rule-based gesture recognition determines the requested action.
 6. PyAutoGUI executes the corresponding mouse or keyboard command.
 
-**Technical Note:** Gestora AI uses MediaPipe's pretrained hand landmark detection model. The gesture classification logic is currently rule-based, rather than a separately trained custom machine learning model.
+**Technical Note:** Gestora AI uses MediaPipe's pretrained hand landmark detection model. Its gesture recognition logic is currently rule-based rather than a separately trained custom machine learning classifier.
+
+---
 
 ## Installation
 
 ### Prerequisites
 
 - Python 3.11
-- A working webcam
-- Windows operating system
-- Git (optional, for cloning the repository)
+- Windows 10 or 11
+- Working webcam
+- Internet connection for installing dependencies
+- Git (optional)
 
 ### Step 1: Clone the Repository
 
@@ -128,7 +173,7 @@ python -m pip install -r requirements.txt
 
 ## Run the Application
 
-Start the main dashboard:
+Launch the main dashboard:
 
 ```cmd
 python dashboard.py
@@ -136,13 +181,21 @@ python dashboard.py
 
 The Gestora AI dashboard will open.
 
-Select a feature to start using hand gestures.
+Select a feature to begin using hand gestures.
 
 To stop a running feature, click **STOP CURRENT FEATURE**.
 
+---
+
 ## Run Individual Features
 
-You can also run each module separately.
+Individual modules can also be launched separately.
+
+### Webcam Test
+
+```cmd
+python camera_test.py
+```
 
 ### Hand Tracking
 
@@ -180,6 +233,8 @@ python gesture_recognition.py
 python gesture_shortcuts.py
 ```
 
+---
+
 ## Project Structure
 
 ```text
@@ -196,6 +251,17 @@ Gestora-AI/
 |-- requirements.txt
 |-- README.md
 |-- .gitignore
+|
+|-- screenshots/
+|   |-- dashboard.png
+|   |-- virtual_mouse.png
+|   |-- air_drawing.png
+|   |-- presentation_open_palm.png
+|   |-- presentation_peace.png
+|   |-- presentation_fist.png
+|
+|-- demo/
+|   |-- recording.mp4
 ```
 
 ## Application Controls
@@ -206,45 +272,48 @@ Gestora-AI/
 | Virtual Mouse | Thumb-index pinch | Left click |
 | Scrolling | Two raised fingers | Scroll |
 | Air Drawing | Index finger | Draw |
-| Air Drawing | Index + middle fingers | Pause |
-| Air Drawing | C | Clear drawing |
+| Air Drawing | Index + middle fingers | Pause drawing |
+| Air Drawing | C | Clear canvas |
 | Air Drawing | S | Save drawing |
 | Air Drawing | Q | Quit |
 | Presentation | Peace | Next slide |
 | Presentation | Fist | Previous slide |
 | Presentation | Open Palm | Reset / Ready |
 
+---
+
 ## System Requirements
 
-- Webcam with adequate lighting
+- Working webcam
 - Python 3.11
 - Windows 10 or 11
-- Required Python libraries installed
-- Sufficient processing power for real-time video analysis
+- Required Python dependencies
+- Adequate lighting for hand tracking
+- Sufficient processing power for real-time video processing
 
-Performance may vary depending on webcam quality, lighting, and computer hardware.
+Performance may vary depending on webcam quality, lighting conditions, and computer hardware.
 
-## Limitations
+## Current Limitations
 
-- Gesture recognition accuracy depends on hand visibility and lighting.
-- Rapid hand movements may affect tracking stability.
-- Some gestures may be confused due to hand orientation.
-- Performance can decrease on lower-powered devices.
-- The current gesture recognition system uses predefined rules.
+- Gesture recognition depends on hand visibility and lighting.
+- Rapid movements may reduce tracking stability.
+- Similar gestures may occasionally be confused.
+- Lower-powered devices may experience performance issues.
+- Gesture classification currently relies on predefined rules.
 
 ## Future Improvements
 
-- Train a custom machine learning gesture classifier.
-- Improve gesture recognition accuracy.
-- Add customizable gesture shortcuts.
-- Introduce adjustable sensitivity settings.
-- Improve real-time processing performance.
+- Develop a custom-trained gesture classification model.
+- Improve recognition accuracy and stability.
+- Add customizable keyboard shortcuts.
+- Introduce adjustable gesture sensitivity.
+- Optimize real-time processing performance.
 - Add more accessibility-focused features.
-- Enhance the graphical user interface.
+- Enhance the desktop dashboard interface.
 
 ## Learning Outcomes
 
-This project provided practical experience in:
+Through this project, I gained practical experience in:
 
 - Computer vision
 - Real-time hand tracking
@@ -252,8 +321,10 @@ This project provided practical experience in:
 - Gesture recognition
 - Python GUI development
 - Mouse and keyboard automation
-- Integrating multiple Python modules
+- Integration of multiple Python modules
 - Git and GitHub version control
+
+---
 
 ## Author
 
@@ -270,3 +341,4 @@ https://github.com/FaseehaAzam/Gestora-AI
 ## License
 
 No license has been selected for this project.
+
