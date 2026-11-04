@@ -1,21 +1,28 @@
 
+
 import tkinter as tk
 from tkinter import messagebox
 import subprocess
 import sys
 import os
 
-# AIRCTRL - Main Dashboard
+# Gestora AI - Main Dashboard
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 running_process = None
 
-def launch_feature(filename):
+BG = "#0f172a"
+TEXT = "#cbd5e1"
+MUTED = "#94a3b8"
+ACCENT = "#38bdf8"
+
+
+def launch_feature(filename, feature_name):
     global running_process
 
     if running_process and running_process.poll() is None:
         messagebox.showwarning(
-            "AIRCTRL",
+            "Gestora AI",
             "Please stop the current feature first."
         )
         return
@@ -34,21 +41,25 @@ def launch_feature(filename):
             [sys.executable, script_path],
             cwd=BASE_DIR
         )
+
         status_label.config(
-            text=f"Running: {filename}",
+            text=f"Running: {feature_name}",
             fg="#22c55e"
         )
+
     except Exception as error:
         messagebox.showerror(
             "Error",
             str(error)
         )
 
+
 def stop_feature():
     global running_process
 
     if running_process and running_process.poll() is None:
         running_process.terminate()
+
         try:
             running_process.wait(timeout=3)
         except subprocess.TimeoutExpired:
@@ -56,38 +67,56 @@ def stop_feature():
             running_process.wait()
 
     running_process = None
+
     status_label.config(
         text="Status: Ready",
-        fg="#94a3b8"
+        fg=MUTED
     )
+
 
 def close_dashboard():
     stop_feature()
     root.destroy()
 
+
 root = tk.Tk()
-root.title("AIRCTRL - AI Gesture Control")
-root.geometry("480x560")
-root.configure(bg="#0f172a")
+root.title("Gestora AI | Hand Gesture Control")
+root.geometry("500x620")
+root.configure(bg=BG)
 root.resizable(False, False)
 
+
+# Main heading
 title = tk.Label(
     root,
-    text="AIRCTRL",
+    text="GESTORA AI",
     font=("Segoe UI", 30, "bold"),
-    fg="#38bdf8",
-    bg="#0f172a"
+    fg=ACCENT,
+    bg=BG
 )
-title.pack(pady=(30, 5))
+title.pack(pady=(28, 5))
 
+
+# Subtitle
 subtitle = tk.Label(
     root,
     text="AI-Powered Touchless Computer Control",
     font=("Segoe UI", 11),
-    fg="#cbd5e1",
-    bg="#0f172a"
+    fg=TEXT,
+    bg=BG
 )
-subtitle.pack(pady=(0, 25))
+subtitle.pack(pady=(0, 8))
+
+
+tagline = tk.Label(
+    root,
+    text="Control Beyond Touch",
+    font=("Segoe UI", 10, "italic"),
+    fg=MUTED,
+    bg=BG
+)
+tagline.pack(pady=(0, 20))
+
 
 def add_button(text, filename, color):
     button = tk.Button(
@@ -102,10 +131,12 @@ def add_button(text, filename, color):
         cursor="hand2",
         width=29,
         height=2,
-        command=lambda: launch_feature(filename)
+        command=lambda: launch_feature(filename, text)
     )
     button.pack(pady=7)
 
+
+# Features
 add_button(
     "Virtual Mouse + Scroll",
     "airctrl_scroll.py",
@@ -130,27 +161,46 @@ add_button(
     "#0d9488"
 )
 
+
+# Stop button
 stop_button = tk.Button(
     root,
     text="STOP CURRENT FEATURE",
     font=("Segoe UI", 11, "bold"),
     bg="#dc2626",
     fg="white",
+    activebackground="#b91c1c",
+    activeforeground="white",
     relief="flat",
+    cursor="hand2",
     width=29,
     height=2,
     command=stop_feature
 )
 stop_button.pack(pady=(20, 10))
 
+
+# Status label
 status_label = tk.Label(
     root,
     text="Status: Ready",
     font=("Segoe UI", 10),
-    fg="#94a3b8",
-    bg="#0f172a"
+    fg=MUTED,
+    bg=BG
 )
-status_label.pack(pady=10)
+status_label.pack(pady=7)
+
+
+# Footer
+footer = tk.Label(
+    root,
+    text="Powered by Python | OpenCV | MediaPipe",
+    font=("Segoe UI", 9),
+    fg="#64748b",
+    bg=BG
+)
+footer.pack(side="bottom", pady=14)
+
 
 root.protocol("WM_DELETE_WINDOW", close_dashboard)
 root.mainloop()

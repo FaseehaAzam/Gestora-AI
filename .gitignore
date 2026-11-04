@@ -27,3 +27,7 @@ Thumbs.db
 
 # Generated drawings
 airctrl_drawing.png
+
+# Gestora AI virtual environments
+gestora_env/
+airctrl_env/

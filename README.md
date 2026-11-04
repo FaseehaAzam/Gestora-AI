@@ -1,14 +1,12 @@
-
-
-\# AIRCTRL — AI-Powered Hand Gesture Control System
-
-
-
-Control your computer without touching a mouse or keyboard!
+\# Gestora AI — AI-Powered Hand Gesture Control System
 
 
 
-AIRCTRL is a Python-based computer vision application that uses a webcam to detect hand movements and recognize gestures in real time.
+\*\*Control your computer without touching a mouse or keyboard!\*\*
+
+
+
+Gestora AI is a Python-based computer vision application that uses a webcam to detect hand movements and recognize gestures in real time.
 
 
 
@@ -36,9 +34,9 @@ It provides a desktop dashboard for launching different touchless interaction fe
 
 \- Pause drawing using two fingers.
 
-\- Clear the canvas by pressing C.
+\- Clear the canvas by pressing `C`.
 
-\- Save drawings as PNG images by pressing S.
+\- Save drawings as PNG images by pressing `S`.
 
 
 
@@ -72,7 +70,7 @@ Control PowerPoint presentations using hand gestures:
 
 \### 5. Desktop Dashboard
 
-A Tkinter-based graphical interface for launching and stopping different AIRCTRL features.
+A Tkinter-based graphical interface for launching and stopping different Gestora AI features.
 
 
 
@@ -110,7 +108,7 @@ A Tkinter-based graphical interface for launching and stopping different AIRCTRL
 
 
 
-Gesture recognition currently uses landmark-based rules rather than a separately trained machine learning classifier.
+\*\*Note:\*\* Gesture recognition currently uses landmark-based rules rather than a separately trained machine learning classifier.
 
 
 
@@ -118,35 +116,39 @@ Gesture recognition currently uses landmark-based rules rather than a separately
 
 
 
-Clone the repository:
+\### 1. Clone the repository
 
 
 
 ```bash
 
-git clone https://github.com/YOUR\_USERNAME/AIRCTRL.git
+git clone https://github.com/FaseehaAzam/Gestora-AI.git
 
-cd AIRCTRL
-
-```
-
-
-
-Create a virtual environment:
-
-
-
-```bash
-
-py -3.11 -m venv airctrl\_env
-
-airctrl\_env\\Scripts\\activate
+cd Gestora-AI
 
 ```
 
 
 
-Install dependencies:
+\### 2. Create a virtual environment
+
+
+
+On Windows:
+
+
+
+```cmd
+
+py -3.11 -m venv gestora\_env
+
+gestora\_env\\Scripts\\activate
+
+```
+
+
+
+\### 3. Install dependencies
 
 
 
@@ -178,21 +180,25 @@ Select a feature from the dashboard.
 
 
 
-\- dashboard.py — Main desktop dashboard
+\- `dashboard.py` — Main desktop dashboard
 
-\- hand\_tracking.py — Hand landmark detection
+\- `camera\_test.py` — Webcam testing
 
-\- virtual\_mouse.py — Mouse movement and clicking
+\- `hand\_tracking.py` — Hand landmark detection
 
-\- airctrl\_scroll.py — Mouse, clicking and scrolling
+\- `virtual\_mouse.py` — Mouse movement and clicking
 
-\- air\_drawing.py — Virtual drawing canvas
+\- `airctrl\_scroll.py` — Mouse movement, clicking, and scrolling
 
-\- gesture\_recognition.py — Gesture recognition
+\- `air\_drawing.py` — Virtual drawing canvas
 
-\- gesture\_shortcuts.py — Presentation control
+\- `gesture\_recognition.py` — Gesture recognition
 
-\- requirements.txt — Python dependencies
+\- `gesture\_shortcuts.py` — Presentation control
+
+\- `requirements.txt` — Python dependencies
+
+\- `.gitignore` — Files excluded from version control
 
 
 
@@ -230,7 +236,11 @@ Select a feature from the dashboard.
 
 
 
-AI Student | Computer Vision \& Python Projects
+\*\*FaseehaAzam\*\*
+
+
+
+GitHub: https://github.com/FaseehaAzam
 
 
 
@@ -239,8 +249,6 @@ AI Student | Computer Vision \& Python Projects
 
 
 No license has been selected yet.
-
-```
 
 
 
